@@ -1,0 +1,35 @@
+{
+  "name": "Parallel Testing Environment",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "VARIANT": "3.9"
+    }
+  },
+  "settings": {
+    "python.pythonPath": "/usr/local/bin/python",
+    "editor.formatOnSave": true,
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
+  "extensions": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "mhutchie.git-graph",
+    "eamodio.gitlens"
+  ],
+  "forwardPorts": [5000, 8000],
+  "postCreateCommand": "pip install -r requirements.txt && pytest --version",
+  "remoteUser": "codespace",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "containerEnv": {
+    "PYTHONUNBUFFERED": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "runArgs": [
+    "--cpus=4",
+    "--memory=8g"
+  ]
+}
